@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %} Home {% endblock %}
+{% block content %}
+
+<h3>Welcome to Your Todo List</h3>
+<br>
+<form hx-post="{% url 'create_todo' %}" hx-target="#todoList">
+    {% csrf_token %}
+    <div>
+        <label for="todoText" class="todo-text">Enter your todo here: </label>
+        <div class="col-6">
+            <input type="text" name="title" id="todoText" required>
+        </div>
+        <br>
+        <div class="todo-actions">
+            <button>Add</button>
+        </div>
+    </div>
+</form>
+<br>
+<div id="todoList">
+    {% include 'todo-list.html' %}
+</div>
+
+{% endblock %}
